@@ -1,0 +1,38 @@
+# Dependencias de Node.js
+node_modules/
+package-lock.json
+
+# Compilación y construcción
+build/
+dist/
+
+# Configuración de entornos
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de logs y depuración
+npm-debug.log*
+debug.log*
+
+# Cache y configuración de editores de texto
+.cache/
+.vscode/
+.idea/
+.eslintcache
+*.swp
+*.swo
+*.sublime-workspace
+
+# Archivos de testing y cobertura
+coverage/
+jest/
+cypress/screenshots/
+cypress/videos/
+
+# Archivos de servicio
+*.bak
+*.log
+.DS_Store

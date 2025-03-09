@@ -1,0 +1,24 @@
+
+html body{
+    background-color: #21232A;
+    color: white;
+}
+
+.counter{
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.2rem;
+}
+
+.counter .botones{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    
+}
+
+.botones button{
+    font-size: 1.2rem;
+    cursor: pointer;
+}

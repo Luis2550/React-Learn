@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-poppins: Poppins, sans-serif;
+    --font-noto-sans: Noto Sans, serif;
+    --font-sigmar: Sigmar, serif;
+}
+
+@layer components {
+    .container {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .label-form {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .button-MenuOpen{
+      background-color: white;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      border-radius: 1rem;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }

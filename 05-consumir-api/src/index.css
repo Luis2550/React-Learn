@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer components {
+
+    .contenedor{
+        @apply w-[90%] flex mx-auto overflow-hidden max-w-screen-xl;
+    }
+
+    .redondeo-boton{
+        @apply bg-bright-red text-very-dark-blue block w-max py-4 px-12 rounded-full;
+    }
+
+    .footer-area{
+        grid-template-areas: 
+        "form"
+        "navegation"
+        "social-media"
+        "logo"
+        "copy"
+        ;
+    }
+
+    .md-footer-area{
+
+        grid-template-areas: 
+        "logo              navegation   form"
+        "social-media      navegation   copy"
+        ;
+
+    }
+
+} */
