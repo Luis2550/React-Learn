@@ -1,12 +1,8 @@
+@import "tailwindcss";
+
 body{
     padding: 20px;
     background-color: rgba(37, 33, 33);
     color: white;
 }
 
-button {
-    margin-right: 10px;
-    padding: 5px 15px;
-    border-radius: 10px;
-    border-style: none;
-}

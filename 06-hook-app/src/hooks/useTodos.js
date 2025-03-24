@@ -45,7 +45,7 @@ export const useTodos = () => {
 
     const [ todos, dispatchTodo] = useReducer( todoReducer, initialState, inicio)
     
-    const lastId = todos.at(-1)?.id || null;
+    const lastId = (todos ?? []).at(-1)?.id || 0;
 
     
     useEffect(() => {
