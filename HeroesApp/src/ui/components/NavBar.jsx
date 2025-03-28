@@ -1,6 +1,20 @@
-import { NavLink } from "react-router-dom"
+import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../auth/context/AuthContext";
 
 export const NavBar = () => {
+
+
+    const {user} = useContext(AuthContext)
+
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+
+        navigate( "/login", {replace: true})
+
+    }
+
   return (
     <nav className="w-full bg-gray-800">
      
@@ -18,13 +32,24 @@ export const NavBar = () => {
             <NavLink to="/dc" className={ ({isActive}) => ( isActive ? 'text-white border-b' : 'text-gray-300/80' ) }>
                 DC
             </NavLink>
+
+            <NavLink to="/search" className={ ({isActive}) => ( isActive ? 'text-white border-b' : 'text-gray-300/80' ) }>
+
+                Search
+
+            </NavLink>
         </div>
 
-        <NavLink to="/login" className= { ({isActive}) =>  ` border px-2 ${isActive ? 'text-white' : 'text-gray-300/80'}`  }>
-            Logout
-        </NavLink>
+        <div className="flex gap-3 items-center">
+            <h2> {user?.name} </h2>
+            <button className="py-1 px-2 rounded-xl bg-purple-800"  onClick={ onLogout } >
+                Logout
+            </button>
+        </div>
         
      </ul>
+
+     
 
     </nav>
   )
