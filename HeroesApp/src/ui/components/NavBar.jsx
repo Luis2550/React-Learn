@@ -5,12 +5,13 @@ import { AuthContext } from "../../auth/context/AuthContext";
 export const NavBar = () => {
 
 
-    const {user} = useContext(AuthContext)
+    const {user, Logout} = useContext(AuthContext)
 
     const navigate = useNavigate();
 
     const onLogout = () => {
 
+        Logout()
         navigate( "/login", {replace: true})
 
     }
@@ -42,7 +43,7 @@ export const NavBar = () => {
 
         <div className="flex gap-3 items-center">
             <h2> {user?.name} </h2>
-            <button className="py-1 px-2 rounded-xl bg-purple-800"  onClick={ onLogout } >
+            <button className="py-1 px-2 rounded-xl bg-purple-800 cursor-pointer"  onClick={ onLogout } >
                 Logout
             </button>
         </div>

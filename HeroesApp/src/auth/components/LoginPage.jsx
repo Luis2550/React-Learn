@@ -10,9 +10,14 @@ export const LoginPage = () => {
 
   const onLogin = () => {
 
+    const url = localStorage.getItem('lastPath') || '/';
+
     Login('Luis Lopez');
     
-    navegate( "/", {replace: true} )
+    navegate(url, 
+      {
+        replace: true 
+      })
   }
 
   return (
