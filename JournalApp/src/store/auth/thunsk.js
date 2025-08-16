@@ -1,45 +1,55 @@
-import { GoogleSigIn, registerUserWithEmailPassword } from "../../firebase/provides"
-import { checkingCredentials, login, logout } from "./authSlice"
-
+import {
+  GoogleSigIn,
+  LoginWithEmailPassword,
+  registerUserWithEmailPassword,
+} from "../../firebase/provides";
+import { checkingCredentials, login, logout } from "./authSlice";
 
 export const chekingAuthentication = () => {
-
-    return async( dispatch ) => {
-
-        dispatch( checkingCredentials() )
-
-    }
-
-}
-
+  return async (dispatch) => {
+    dispatch(checkingCredentials());
+  };
+};
 
 export const startGoogleSingIn = () => {
+  return async (dispatch) => {
+    dispatch(checkingCredentials());
+    const result = await GoogleSigIn();
 
-    return async( dispatch ) => {
+    if (!result.ok) return dispatch(logout(result.errorMessage));
 
-        dispatch( checkingCredentials() )
-        const result = await GoogleSigIn()
+    dispatch(login(result));
+  };
+};
 
-        if( !result.ok ) return dispatch(logout(result.errorMessage))
+export const startCreatingUserWithEmailPassword = ({
+  email,
+  password,
+  displayName,
+}) => {
+  return async (dispatch) => {
+    dispatch(checkingCredentials());
 
-        dispatch( login( result ))
-        
-    }
+    const { ok, uid, photoURL, errorMessage } =
+      await registerUserWithEmailPassword({ email, password, displayName });
 
-}
+    if (!ok) return dispatch(logout({ errorMessage }));
 
-export const startCreatingUserWithEmailPassword = ( { email, password, displayName}) => {
+    dispatch(login({ uid, displayName, email, photoURL }));
+  };
+};
 
-    return async(dispatch)=> {
+export const startLoginWithEmailPassword = ({ email, password }) => {
+  return async (dispatch) => {
+    dispatch(checkingCredentials());
 
-        dispatch( checkingCredentials());
+    const result = await LoginWithEmailPassword({ email, password });
 
-        const { ok, uid, photoURL, errorMessage} = await registerUserWithEmailPassword({email, password, displayName});
+    console.log(result);
 
-        if( !ok) return dispatch( logout({errorMessage}) )
+    if (!result.ok) return dispatch(logout( result ));
 
-        dispatch( login( {uid, displayName, email, photoURL}) )
-
-    }
-
-}
+    dispatch(login(result));
+    
+  };
+};

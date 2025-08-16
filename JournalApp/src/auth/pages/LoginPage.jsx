@@ -4,44 +4,43 @@ import { GoogleIcon, LoginIcon } from "../../icons";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
 
-import { chekingAuthentication, startGoogleSingIn } from "../../store/auth/thunsk";
+import {
+  startGoogleSingIn,
+  startLoginWithEmailPassword,
+} from "../../store/auth/thunsk";
 import { useDispatch, useSelector } from "react-redux";
 
 export const LoginPage = () => {
-
-  const { status } = useSelector( state => state.auth )
+  const { status, errorMessages } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-
-  const isAuthenticating = useMemo( () => status === "checking", [status] )
+  const isAuthenticating = useMemo(() => status === "checking", [status]);
 
   const { email, password, onInputChange, formState } = useForm({
     email: "",
     password: "",
-  })
+  });
 
   const onSubmit = (e) => {
-
     e.preventDefault();
 
-    dispatch( chekingAuthentication() );
-
-  }
+    dispatch(startLoginWithEmailPassword({ email, password }));
+  };
 
   const onGoogleSignIn = (e) => {
     e.preventDefault();
 
-    dispatch( startGoogleSingIn() );
-    
-  }
+    dispatch(startGoogleSingIn());
+  };
 
   return (
     <AuthLayout title={"Iniciar Sesión"}>
-
-      <form action="" className="flex flex-col w-full h-full gap-4" onSubmit={onSubmit}>
-        
+      <form
+        action=""
+        className="flex flex-col w-full h-full gap-4"
+        onSubmit={onSubmit}
+      >
         <div className="flex flex-col gap-2">
-          
           <label htmlFor="">Correo:</label>
           <input
             type="text"
@@ -55,20 +54,35 @@ export const LoginPage = () => {
 
         <div className="flex flex-col gap-2 mb-2">
           <label htmlFor="">Contraseña:</label>
-          <input type="password" className="input-auth" 
-          name="password"
-          value={password}
-          onChange={onInputChange}/>
+          <input
+            type="password"
+            className="input-auth"
+            name="password"
+            value={password}
+            onChange={onInputChange}
+          />
         </div>
 
+        <div className={`w-full bg-red-400 flex justify-center items-center py-2 rounded-md ${!!errorMessages ? "" : "hidden"}`}>
+          <span>{errorMessages}</span>
+        </div>
+
+
         <div className="grid grid-cols-1 sm:grid-cols-2 justify-center gap-3">
-          
-          <button disabled={isAuthenticating} className={`boton-auth ${ isAuthenticating? "bg-gray-400/80": "" }`} type="submit">
+          <button
+            disabled={isAuthenticating}
+            className={`boton-auth ${isAuthenticating ? "bg-gray-400/80" : ""}`}
+            type="submit"
+          >
             <LoginIcon width={24} height={24} />
             Login
           </button>
 
-          <button disabled={ isAuthenticating} className={`boton-auth ${ isAuthenticating? "bg-gray-400/80": "" }`} onClick={onGoogleSignIn} >
+          <button
+            disabled={isAuthenticating}
+            className={`boton-auth ${isAuthenticating ? "bg-gray-400/80" : ""}`}
+            onClick={onGoogleSignIn}
+          >
             <GoogleIcon width={24} height={24} />
             Google
           </button>

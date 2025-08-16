@@ -2,6 +2,11 @@ import { MenuIcon, LogoutIcon } from "../../icons"
 
 
 export const NavBar = ({ drawerWidth = 240 }) => {
+
+    const onLogout = () => {
+        console.log("logout");
+    }
+
     return (
 
         <nav className={`fixed h-15 bg-gray-800/98 flex items-center px-5 width-navbar` } 
@@ -14,7 +19,9 @@ export const NavBar = ({ drawerWidth = 240 }) => {
 
                 <h2 className="max-md:pl-5 md:text-2xl font-bold">Journal</h2> 
 
-                <LogoutIcon width={40} height={35} className={"cursor-pointer"} />
+                <button onClick={ onLogout }>
+                    <LogoutIcon width={40} height={35} className={"cursor-pointer"}/>
+                </button>
 
             </div>
 
